@@ -1,0 +1,1 @@
+INSERT INTO annoucements(content) VALUES(?);

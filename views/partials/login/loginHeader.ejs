@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Title</title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+      <!--cHANGE-->
+      <link rel="stylesheet" type="text/css" href="/css/utils/normalize.css">
+         <link rel="stylesheet" href="/css/staff/login/employeeLogin.css">
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+      
+            <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+      <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+   </head>
+<body>
+
+
+                <% if(success && success.length >= 1){ %>
+               <script>
+                    Materialize.toast('<%= success %>', 5000, 'rounded toastSuccess');
+                  </script>
+               <% } %>
+                           <% if(error && error.length >= 1){ %>
+                  <script>
+                    Materialize.toast('<%= error %>', 5000, 'rounded toastError');
+                  </script>
+               <% } %>
+               

@@ -1,0 +1,1 @@
+INSERT INTO employees (employeeNumber, websiteRank, jobTitle, firstName, lastName) VALUES(?, ?, ?, ?, ?);

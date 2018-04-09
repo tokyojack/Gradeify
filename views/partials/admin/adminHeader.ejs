@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Title</title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+      <!--cHANGE-->
+      <link rel="stylesheet" type="text/css" href="/css/utils/normalize.css">
+         <link rel="stylesheet" href="/css/staff/admin/admin.css">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+      <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+   </head>
+   <body>
+       
+                <% if(success && success.length >= 1){ %>
+               <script>
+                    Materialize.toast('<%= success %>', 5000, 'rounded toastSuccess');
+                  </script>
+               <% } %>
+                           <% if(error && error.length >= 1){ %>
+                  <script>
+                    Materialize.toast('<%= error %>', 5000, 'rounded toastError');
+                  </script>
+               <% } %>
+               
+               
+   <ul id="slide-out" class="side-nav fixed">
+      <li>
+         <div class="user-view">
+            <div class="background">
+               <img src="/photos/books.jpg">
+            </div>
+            <a href="/home"><h1 class="title">Gradeify</h1></a>
+            <a href="#!name"><span id="hidden" class="white-text name">a</span></a>
+            <a href="#!email"><span class="white-text email">Jack Clarke</span></a>
+         </div>
+      </li>
+      <li><a href="/classes">Classes</a></li>
+      <!--<li><a href="/employees">Employees</a></li>-->
+      <li>
+         <div class="divider"></div>
+      </li>
+      <li><a href="/addemployee">Add Employee</a></li>
+      <li><a href="/TODO">Remove Employee</a></li>
+      <li>
+         <div class="divider"></div>
+      </li>
+      <li><a href="/addstudent">Add Student</a></li>
+      <li><a href="/TODO">Remove Student</a></li>
+      
+      <% if(url.includes("/home")){  %>
+<li><div class="left-align"><a href="/logout" id="backButton" class="waves-effect waves-light btn-large"><i class="material-icons left">arrow_back</i>Logout</a></div></li>
+<% } else { %>
+<li><div class="left-align"><a href="/home" id="backButton" class="waves-effect waves-light btn-large"><i class="material-icons left">arrow_back</i>Home</a></div></li>
+<% } %>
+      
+   </ul>
+   <a href="#" data-activates="slide-out" class="button-collapse"><i class="medium material-icons" id="menuIcon">menu</i></a>
+
+
+
+
+
+    
+    <main>

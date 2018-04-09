@@ -1,0 +1,79 @@
+<% include ../../partials/admin/adminHeader.ejs %>
+<ul class="collapsible popout" data-collapsible="accordion">
+    <% var teacherIds = [] %>
+    
+   <% teachers.forEach(function(teacher){ %>
+   <li>
+      <% var isAct = ''; %>
+      
+      <% if(openedBox == teacher.employeeNumber){ %>
+          <% var isAct = ' active' %>
+      <% } %>
+      
+
+      <div class="collapsible-header<%= isAct %>" id="teacherName"><i class="material-icons">class</i><%= teacher.firstName %> <%= teacher.lastName %></div>
+      <% var classString = ""; %>
+      <% teacherIds.push(teacher.employeeNumber) %>
+      <% if(teacher.classes == null){ %>
+      <% classString += '<a href="#modal'+ teacher.employeeNumber + '" class="btn-floating waves-effect waves-light red modal-trigger"><i class="material-icons">add</i></a>' %>
+      <div class="collapsible-body"><span><%- classString %></span></div>
+      
+         
+
+<% include ./modals/addClass.ejs %>
+            
+   
+      
+      <% return; %>   
+      <% } %>        
+      <% var classes = teacher.classes.split(', '); %>
+      <% var rounds = 0; %>
+      <% classes.forEach(function(studentClass){ %>
+      <% var classValues = studentClass.split('.'); %>
+      <% classString +=  '<span class="className">' + classValues[1] +'</span> <a href="/deleteclass/'+ classValues[0] + '" class="waves-effect waves-light btn secondary-content red darken-1 padding-left-small">Delete</a><a href="/class/'+ classValues[0] + '" class="waves-effect waves-light btn secondary-content">View</a><br/><br/>' %>
+      <% rounds++; %>
+      <% if(rounds != classes.length){ %>
+          <% classString += '<hr class="style1"></br>' %>
+      <% } %>
+      <% }); %>
+      <% classString += '<hr class="style1"></br>' %>
+      <% classString += '<a href="#modal'+ teacher.employeeNumber + '" class="btn-floating waves-effect waves-light red modal-trigger"><i class="material-icons">add</i></a>' %>
+      <div class="collapsible-body"><span> <%- classString %></span></div>
+      
+ <% include ./modals/addClass.ejs %>
+
+   </li>
+   <% }); %>
+</ul>
+<script>
+
+   <% for(var i = 0; i < teacherIds.length; i++) { %>
+           document.getElementById("submit<%= teacherIds[i] %>").onclick = function() {
+            document.getElementById("addClass<%= teacherIds[i] %>").submit();
+        } 
+   <% } %> 
+
+   $(document).ready(function(){
+   $('.collapsible').collapsible();
+   });
+   
+   $(document).ready(function() {
+   $('select').material_select();
+   });
+   
+   $(document).ready(function(){
+   // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+   $('.modal').modal();
+   });
+   
+
+   
+
+   
+</script>
+<style>
+   body {
+   background-color: steelblue;
+   }
+</style>
+<% include ../../partials/admin/adminFooter.ejs %>

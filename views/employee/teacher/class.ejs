@@ -1,0 +1,49 @@
+<% include ../../partials/teacher/class/classHeader.ejs %>
+   <link rel="stylesheet" type="text/css" href="/css/class.css">
+
+       <div class="container">
+      <table id="tested" class="heavyTable">
+         <thead>
+            <tr>
+               <th class="info">Name/Max/Due Date</th>
+               
+                  <% for (var i=0; i < classAssignmentNames.length; i++){ %>
+               <th />
+                  <a href="/viewassignment/<%= classAssignmentNames[i].id %>" class="assignmentHeader"><span id="assignmentName" class="assignment-<%= i %> left-align"><%= classAssignmentNames[i].name  %></span><span id="assignmentmaxMark" class="maxMark-<%= i %> center-align"><%= classAssignmentNames[i].maxMark %></span><span id="assignmentDueDate" class="dueDate right-align"><%= classAssignmentNames[i].dueDate %></span></a>
+               <% } %>
+               <th id="total">Total</th>
+            </tr>
+         </thead>
+         <tbody>
+            <% var amountOfStudents =  (studentAssignments.length / classAssignmentNames.length)%>
+            <% for (var i=0; i < amountOfStudents; i++){ %>
+            <tr>
+               <th class="studentName"><%= studentAssignments[classAssignmentNames.length* i].firstName %> <%= studentAssignments[classAssignmentNames.length* i].lastName %></th>
+               <% var totalAmount = 0; %>
+               <% var assignNumber = 0; %>
+               <% for (var x=classAssignmentNames.length* i; x < (classAssignmentNames.length* i) + classAssignmentNames.length; x++){ %>
+               <% var value = studentAssignments[x] == null ? 0 :  studentAssignments[x].mark %>
+               <td><%= value == null ? 0 : value %></td>
+               <% (totalAmount +=( (value == null ? 0 : parseInt(value)) /  classAssignmentNames[assignNumber].maxMark) * 100) %>
+               <% assignNumber += 1; %>
+               <% } %>
+               <!-- See if it should round up or down -->
+               <th class="total right-align"><%= (totalAmount / classAssignmentNames.length) %></th>
+            </tr>
+            <% } %>
+         </tbody>
+      </table>
+      </div>
+   </main>
+   
+   <style>
+      body {
+         background-color: steelblue !important;
+      }
+   </style>
+    
+   
+   <script src="/js/class.js" type="text/javascript" ></script>
+   <% include ../../../public/js/classJsSave.ejs %>
+   
+<% include ../../partials/teacher/class/classFooter.ejs %>

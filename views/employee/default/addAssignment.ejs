@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Standard Meta -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <!-- Site Properties -->
+  <title>Add employee</title>
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+
+
+
+    <link rel="stylesheet" href="/css/addEmployee.css">
+
+	<script type="text/javascript" src="/js/addEmployee.js"></script>
+
+</head>
+<body>
+
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+    <h2 class="ui teal header">
+      <div class="content">
+        Add a assignment for class: <%=  %>
+      </div>
+    </h2>
+    <form action="/addclass" method="post" class="ui large form">
+      
+ 
+      
+      <div class="ui stacked segment">
+        
+             
+       
+        <div class="field">
+          <div class="ui left icon input">
+              <i class="user icon"></i>
+            <input type="text" name="className" placeholder="Class Name">
+          </div>
+        </div>
+        
+        
+            <div class="field">
+          <div class="ui left icon input">            <i class="hashtag icon"></i>
+
+            
+            <input type="text" name="employeeNumber" placeholder="Teacher Employee Number">
+          </div>
+        </div>
+        
+    
+        
+        
+        <div class="ui fluid large black submit button">Add Employee</div>
+      </div>
+
+      <div class="ui error message"></div>
+     <div class="ui error message"></div>
+
+    <% if(error && error.length >= 1){ %>
+                  <div  class="ui negative message" role="alert">
+                     <%= error %>
+                  </div>
+               <% } %>
+    </form>
+  </div>
+</div>
+
+</body>
+
+</html>

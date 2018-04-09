@@ -1,0 +1,28 @@
+{
+  "name": "el_grade",
+  "version": "1.0.0",
+  "description": "A grading software for Elphinstone Secondary",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jack Clarke",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "colors": "^1.1.2",
+    "cookie-parser": "^1.4.3",
+    "cookies": "^0.7.1",
+    "dateformat": "^3.0.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "express-flash": "0.0.2",
+    "express-session": "^1.15.6",
+    "month": "^2.0.1",
+    "mysql": "^2.15.0",
+    "mysql-pool": "^0.2.2",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "require-sql": "^1.0.0"
+  }
+}

@@ -1,0 +1,64 @@
+<% include ../../partials/teacher/class/classHeader.ejs %>
+<div class="row">
+    <form action="/createassignment/<%= classId %>" method="post" class="col s12">
+
+
+      
+            
+      <div class="row">
+        <div class="input-field col s12">
+          <input  id="assignmentName" type="text" name="assignmentName" class="validate" required="" aria-required="true">
+          <label for="assignmentName">Assignment Name</label>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="input-field col s12">
+          <input  id="maxMark" type="text" name="maxMark" class="validate" required="" aria-required="true">
+          <label for="maxMark">Max Mark</label>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="input-field col s12">
+            <input id="dueDate" type="text" class="datepicker" name="dueDate" required="" aria-required="true">
+
+          <label for="dueDate">Due Date</label>
+        </div>
+      </div>
+  
+
+ 
+  
+  </div>
+ 
+        <div class="row">
+      <div class="center-align">
+  <button class="btn waves-effect waves-light btn-large" id="submit" type="submit" name="action">Submit
+    <i class="material-icons right">send</i>
+  </button>
+  </div>
+</div>
+
+      
+    </form>
+  </div>
+    
+  <script>
+    $(document).ready(function() {
+    $('select').material_select();
+});
+
+ $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15, // Creates a dropdown of 15 years to control year,
+    today: 'Today',
+    clear: 'Clear',
+    close: 'Ok',
+    closeOnSelect: false // Close upon selecting a date,
+  });
+
+  </script>
+        
+
+<% include ../../partials/teacher/class/classFooter.ejs %>

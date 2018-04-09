@@ -1,0 +1,51 @@
+<% include ../../partials/teacher/class/classHeader.ejs %>
+<div class="row">
+    <form action="/deleteassignment/<%= classId %>" method="post" class="col s12">
+
+
+
+
+  <div class="input-field col s12">
+    <select id="assignmentId" name="assignmentId">
+      <option id="assignmentId" name="assignmentId" value="" disabled selected>Choose the assignment</option>
+      <% for(var i = 0; i < assignments.length; i++){  %>
+            <option value="<%= assignments[i].id %>">Name: <%= assignments[i].name %> | Max: <%= assignments[i].maxMark %> | Due Date: <%= assignments[i].dueDate %></option>
+      <% }  %>
+    </select>
+    <label>Select Assignment</label>
+  </div>
+
+
+
+ 
+        <div class="row">
+      <div class="center-align">
+  <button class="btn waves-effect waves-light btn-large" id="submit" type="submit" name="action">Submit
+    <i class="material-icons right">send</i>
+  </button>
+  </div>
+</div>
+
+      
+    </form>
+  </div>
+    
+  <script>
+    $(document).ready(function() {
+    $('select').material_select();
+});
+
+ $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15, // Creates a dropdown of 15 years to control year,
+    today: 'Today',
+    clear: 'Clear',
+    close: 'Ok',
+    closeOnSelect: false // Close upon selecting a date,
+  });
+
+  </script>
+        
+
+
+<% include ../../partials/teacher/class/classFooter.ejs %>

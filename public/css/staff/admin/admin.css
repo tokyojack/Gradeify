@@ -1,0 +1,103 @@
+body {
+    background: white;
+}
+
+#submit {
+    margin-top: 80px;
+}
+
+#centerButton {
+      display: block;
+  margin: 0 auto;
+}
+
+#hidden{
+    visibility: hidden;
+}
+
+#teacherName {
+    text-transform: capitalize;
+}
+
+#menuIcon {
+    color: steelblue;
+}
+
+.toastError{
+    background-color: #e53935 !important;
+}
+
+.toastSuccess {
+    background-color: #43a047 !important;
+}
+
+.padding-left-small {
+    margin-left: 8.5px !important;
+}
+
+.className {
+    text-transform: capitalize
+}
+
+#backButton {
+    position: absolute;
+    bottom: 90px;
+    float: left;
+    left: 27%;
+    margin-left: -104.5px;
+    /*104.5px is half of the button's width*/
+    background-color: gray !important;
+}
+
+
+.selected {
+    background-color: gray;
+}
+
+.title {
+    color: white !important;
+    font-weight: 700;
+    font-size: 1.45em !important;
+    text-align: center;
+    font-family: 'Acme', sans-serif;
+    text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4),
+    0px 8px 13px rgba(0, 0, 0, 0.1),
+    0px 18px 23px rgba(0, 0, 0, 0.1);
+    border-bottom: none;
+}
+
+.collapsible-body {
+    background: white !important;
+}
+
+/*Nav*/
+
+.side-nav {
+    background-color: rgb(37, 42, 58) !important;
+}
+
+.side-nav li a {
+    color: white !important;
+}
+
+.button-collapse {
+    padding-left: 10px !important;
+    padding-top: 20px !important;
+    color: white;
+}
+
+
+
+header,
+main,
+footer {
+    padding-left: 300px;
+}
+
+@media only screen and (max-width: 992px) {
+    header,
+    main,
+    footer {
+        padding-left: 0;
+    }
+}

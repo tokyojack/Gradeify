@@ -1,0 +1,118 @@
+<script type = 'text/javascript'>
+
+
+class Grade {
+    constructor(firstName, lastName, assignment, mark) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.assignment = assignment;
+        this.mark = mark;
+    }
+}
+
+var updatedGrades = [];
+
+$("td").keyup(function(event) {
+    var keyCode = event.keyCode;
+    var which = event.which;
+    if (keyCode == 13 || which == 13) return;
+    if ((keyCode >= 48 && keyCode <= 57) || (which >= 48 && which <= 57) || (keyCode === 8 || which ===8)) {
+        
+        var col = $(this).parent().children().index($(this));
+        var row = $(this).parent().parent().children().index($(this).parent());
+            
+        var studentName = document.querySelector('table').rows[(row + 1)].cells[0].innerHTML;
+        var assignment = document.querySelector('.assignment-'+(col-1)).innerHTML;
+        var mark =  document.querySelector('table').rows[(row+1)].cells[col].firstElementChild.value;
+         
+        var firstName =studentName.substr(0,studentName.indexOf(' '));
+        var lastName = studentName.substr(studentName.indexOf(' ')+1);
+
+        for(var i =0; i< updatedGrades.length; i++){
+            if(updatedGrades[i].firstName === firstName && updatedGrades[i].lastName && updatedGrades[i].assignment === assignment){
+                updatedGrades.splice(i, 1);
+            }
+        }
+       
+        updatedGrades.push(new Grade(firstName, lastName, assignment, mark === '' ? 0 : parseInt(mark)));
+        var saveButton = document.getElementById("saveButton");
+        saveButton.classList.add("pulse");
+    };
+});
+
+var isButtonClicked = false;
+
+document.querySelector("#saveButton").addEventListener("click", function() {
+    post("/class/<%= classId %>", {
+        updatedGrades: JSON.stringify(updatedGrades)
+    });
+    isButtonClicked = true;
+});
+
+window.onbeforeunload = function (e) {
+    if(updatedGrades.length >= 1 && !isButtonClicked){
+        return "asd";
+    }
+};
+
+$("td").keyup(function(event) {
+    var keyCode = event.keyCode;
+    var which = event.which;
+    if (keyCode == 13 || which == 13) return;
+    if ((keyCode >= 48 && keyCode <= 57) || (which >= 48 && which <= 57) || (keyCode === 8 || which ===8)) {
+        
+
+        var col = $(this).parent().children().index($(this));
+        var row = $(this).parent().parent().children().index($(this).parent());
+
+        var num1 = <%= classAssignmentNames.length %> * row;
+        var num2 =  ( <%= classAssignmentNames.length %> * row) + <%= classAssignmentNames.length %>;
+        
+        
+        var totalNumber = 0;
+        
+        for(var i =1; i <  <%= classAssignmentNames.length %>+1; i++){
+
+            var mark =  document.querySelector('table').rows[(row+1)].cells[i].classList.contains('selected') ? document.querySelector('table').rows[(row+1)].cells[i].firstElementChild.value :  document.querySelector('table').rows[(row+1)].cells[i].innerHTML;
+            var max = document.querySelector('.maxMark-'+(i-1)).innerHTML;
+            totalNumber+= (mark / max) * 100;
+            
+        }
+                // document.querySelector('table').rows[(row+1)].cells[<%= classAssignmentNames.length %> + 1].innerHTML =Math.round( (totalNumber / <%= classAssignmentNames.length %>) )   ;
+
+        document.querySelector('table').rows[(row+1)].cells[<%= classAssignmentNames.length %> + 1].innerHTML =(totalNumber / <%= classAssignmentNames.length %>)    ;
+    };
+});
+
+
+function getFirstWord(str) {
+        let spacePosition = str.indexOf(' ');
+        if (spacePosition === -1)
+            return str;
+        else
+            return str.substr(0, spacePosition);
+    };
+
+function post(path, params, method) {
+    method = method || "post";
+
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for (var key in params) {
+        if (params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+        }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+}
+
+</script>

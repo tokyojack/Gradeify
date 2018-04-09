@@ -1,0 +1,1 @@
+INSERT INTO assignments (name, maxMark, dueDate, classId) VALUES(?, ?, ?, ?)

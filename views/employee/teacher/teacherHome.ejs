@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A layout example that shows off a responsive product landing page.">
+    <title>Landing Page &ndash; Layout Examples &ndash; Pure</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+    
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-old-ie-min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+    <!--<![endif]-->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+<link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">    
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" href="css/layouts/marketing-old-ie.css">
+        <![endif]-->
+        <!--[if gt IE 8]><!-->
+            <link rel="stylesheet" href="css/teacherHome.css">
+        <!--<![endif]-->
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+<div class="header">
+    <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+        <a class="pure-menu-heading" href="">Gradeify</a>
+
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item"><a href="/logout" class="pure-menu-link ui inverted button">Logout</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="main">
+    
+      <ul class="collection with-header">
+        <li class="collection-header"><h4>Classes</h4></li>
+
+<% classes.forEach(function(teacherClass){ %>
+        <li class="collection-item"><div><a href="/class/<%= teacherClass.id %>" class="className"><%= teacherClass.name %></a><a href="/class/<%= teacherClass.id %>" class="secondary-content"><button class="ui primary button">View</button></a></div></li>
+
+  
+<% }); %>
+
+      </ul>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1 @@
+INSERT INTO studentClasses(studentNumber, classId) VALUES(?, ?);

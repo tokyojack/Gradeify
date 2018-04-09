@@ -1,0 +1,42 @@
+.left-side {
+    background-color: blue;
+}
+
+.right-side {
+    margin-top: 20%;
+    
+}
+
+.col.s6 {
+    padding: 0 !important;
+
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    margin: 0 !important;
+}
+
+.carousel-item {
+    background-position: center;
+    background-size: cover;
+
+}
+
+#slideOne {
+    background-image: url("./images/pencils.jpg");
+}
+
+#slideTwo {
+    background-image: url("./images/class.jpg");
+}
+
+* {
+    overflow: hidden;
+}
+
+body {
+    max-width: 100%;
+}

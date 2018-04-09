@@ -1,0 +1,86 @@
+<% include ../../partials/admin/adminHeader.ejs %>
+<div class="row">
+    <form action="/addemployee" method="post" class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="firstName" type="text" name="firstName" class="validate"  required="" aria-required="true">
+          <label for="firstName">First Name</label>
+        </div>
+        <div class="input-field col s6">
+          <input  id="lastName" type="text" name="lastName" class="validate" required="" aria-required="true">
+          <label for="lastName">Last Name</label>
+        </div>
+      </div>
+
+      <!--<div class="row">-->
+      <!--  <div class="input-field col s12">-->
+      <!--    <input id="password" type="password" class="validate">-->
+      <!--    <label for="password">Password</label>-->
+      <!--  </div>-->
+      <!--</div>-->
+      
+      <div class="row">
+        <div class="input-field col s12">
+          <input  id="jobTitle" type="text" name="jobTitle" class="validate" required="" aria-required="true">
+          <label for="jobTitle">Job Title</label>
+        </div>
+      </div>
+      
+            
+      <div class="row">
+        <div class="input-field col s12">
+          <input  id="employeeNumber" type="text" name="employeeNumber" class="validate" required="" aria-required="true">
+          <label for="employeeNumber">Employee Number</label>
+        </div>
+      </div>
+  
+  <div class="row">
+      <div class="input-field col s12">
+    <select name="websiteRank" required="" aria-required="true">
+      <option value="" disabled selected></option>
+      <option value="default">Default</option>
+      <option value="teacher">Teacher</option>
+      <option value="admin">Admin</option>
+    </select>
+    <label>Website Rank</label>
+  </div>
+  </div>
+ 
+        <div class="row">
+      <div class="center-align">
+
+  <button class="btn waves-effect waves-light btn-large" id="submit" type="submit" name="action">Submit
+    <i class="material-icons right">send</i>
+  </button>
+  </div>
+</div>
+      
+ 
+      <!--<div class="row">-->
+      <!--  <div class="input-field col s12">-->
+      <!--    <input id="email" type="email" class="validate">-->
+      <!--    <label for="email">Email</label>-->
+      <!--  </div>-->
+      <!--</div>-->
+      
+      <!--<div class="row">-->
+      <!--  <div class="col s12">-->
+      <!--    This is an inline input field:-->
+      <!--    <div class="input-field inline">-->
+      <!--      <input id="email" type="email" class="validate">-->
+      <!--      <label for="email" data-error="wrong" data-success="right">Email</label>-->
+      <!--    </div>-->
+      <!--  </div>-->
+      <!--</div>-->
+      
+    </form>
+  </div>
+  
+  <script>
+    $(document).ready(function() {
+    $('select').material_select();
+});
+  </script>
+        
+
+<% include ../../partials/admin/adminFooter.ejs %>
