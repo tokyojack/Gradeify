@@ -1,4 +1,3 @@
-# Gradeify
 <h2  align="center">Gradeify</h2>
 <p  align="center">A grading software for teachers with functionality for their students</p>
 
