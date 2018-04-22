@@ -56,6 +56,9 @@ app.use(function(req, res, next) {
 
 //============================= Routes =============================
 
+// NOTE: I most likely will reorganize the routes so there can be things such as:
+// "/assignment/create" and "/assignment/delete"
+
 // Index
 
 var indexRoutes = require("./routes/indexRoutes")();
