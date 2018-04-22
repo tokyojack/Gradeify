@@ -5,8 +5,10 @@ var flashUtils = require('../../../utils/flashUtils');
 
 var redirectLocation = "/classes";
 
+// URL: "/deleteclass"
 module.exports = function(pool) {
 
+    // Delete's the class
     router.get("/:id", middleMan.checkIsAdmin, function(req, res) {
         pool.getConnection(function(err, connection) {
             if (flashUtils.isDatabaseError(req, res, redirectLocation, err))

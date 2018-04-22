@@ -6,25 +6,24 @@ var flashUtils = require('../../../utils/flashUtils');
 
 var redirectLocation = "/class/%id%";
 
-module.exports = function(pool) {
+// URL: "/createassignment"
+module.exports = function (pool) {
 
-    router.get("/:id", middleMan.checkIfUserOwnsClass, function(req, res) {
-        res.render("employee/teacher/addAssignment.ejs", {
+    // "createassignment.ejs" page
+    router.get("/:id", middleMan.checkIfUserOwnsClass, (req, res) =>
+        res.render("employee/teacher/createAssignment.ejs", {
             classId: parseInt(req.params.id),
             isAdmin: true
-        });
-    });
+        }));
 
-    router.post("/:id", middleMan.checkIfUserOwnsClass, function(req, res) {
-        pool.getConnection(function(err, connection) {
+    // Creates an assignment on form post
+    router.post("/:id", middleMan.checkIfUserOwnsClass, function (req, res) {
+        pool.getConnection(function (err, connection) {
             if (flashUtils.isDatabaseError(req, res, redirectLocation, err))
                 return;
 
             redirectLocation = redirectLocation.replace("%id%", req.params.id);
             var insertAssignment = require('./queries/insertAssignment.sql');
-
-            //'YYYY-MM-DD
-            //December 14, 2017
 
             var dueDate = req.body.dueDate;
 
@@ -36,8 +35,7 @@ module.exports = function(pool) {
 
             var builtDate = year + "-" + monthNumber + "-" + day
 
-
-            connection.query(insertAssignment, [req.body.assignmentName, parseInt(req.body.maxMark), builtDate, parseInt(req.params.id)], function(err, rows) {
+            connection.query(insertAssignment, [req.body.assignmentName, parseInt(req.body.maxMark), builtDate, parseInt(req.params.id)], function (err, rows) {
                 connection.release();
 
                 if (flashUtils.isDatabaseError(req, res, redirectLocation, err))

@@ -2,11 +2,11 @@ var router = require("express").Router();
 
 var middleMan = require("../../../utils/middleMan");
 
+// URL: "/employees"
 module.exports = function(pool) {
 
-    router.get("/", middleMan.checkIsAdmin, function(req, res) {
-        res.render("employee/admin/employees.ejs");
-    });
+    // "employees.ejs" page
+    router.get("/", middleMan.checkIsAdmin, (req, res) => res.render("employee/admin/employees.ejs"));
 
     return router;
 }

@@ -1,3 +1,6 @@
+// A part of the "homeRoutes.js"
+
+// URL: "/home"
 module.exports = function(req, res, user, flashUtils, redirectLocation, pool) {
 
     pool.getConnection(function(err, connection) {

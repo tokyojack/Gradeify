@@ -1,14 +1,11 @@
 var router = require("express").Router();
 
+// URL: "*" (Anything that wasn't redirected before this)
 module.exports = function() {
     
-    router.get("*", function(req, res) {
-        res.redirect("/");
-    });
+    router.get("*", (req, res) => res.redirect("/"));
     
-    router.post("*", function(req, res) {
-        res.redirect("/");
-    });
+    router.post("*", (req, res) => res.redirect("/"));
 
     return router;
 };

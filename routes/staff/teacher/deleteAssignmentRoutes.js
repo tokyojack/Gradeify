@@ -5,10 +5,11 @@ var middleMan = require("../../../utils/middleMan");
 var flashUtils = require('../../../utils/flashUtils');
 
 var redirectLocation = "/class/%id%";
-//TODO Remember to replace the id for it
 
+// URL: "/deleteassignment"
 module.exports = function(pool) {
 
+    // "deleteAssignment.ejs" page
     router.get("/:id", middleMan.checkIfUserOwnsClass, function(req, res) {
         pool.getConnection(function(err, connection) {
             if (flashUtils.isDatabaseError(req, res, '/class/' + req.params.id, err))
@@ -16,28 +17,23 @@ module.exports = function(pool) {
 
             var selectClassAssignmentNames = require('./queries/selectClassAssignmentNames.sql');
 
-
             connection.query(selectClassAssignmentNames, [req.params.id], function(err, assignments) {
                 connection.release();
 
-                if (flashUtils.isDatabaseError(req, res, '/class/' + req.params.id, err))
+                if (flashUtils.isDatabaseError(req, res, redirectLocation.replace("%id%", req.params.id), err))
                     return;
-
-
 
                 res.render("employee/teacher/deleteAssignment.ejs", {
                     classId: parseInt(req.params.id),
                     assignments: assignments,
                     isAdmin: true
                 });
-                
-                //FIX ADMIN
             });
         });
     });
 
 
-    //Check if double middlemans works
+    // Remove's the assignment form post
     router.post("/:id", middleMan.checkIfUserOwnsAssignment, middleMan.checkIfUserOwnsClass, function(req, res) {
         pool.getConnection(function(err, connection) {
             if (flashUtils.isDatabaseError(req, res, '/class/' + req.params.id, err))

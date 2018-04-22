@@ -1,11 +1,12 @@
 var router = require("express").Router();
 
+// URL: "/stafflogin"
 module.exports = function(passport) {
 
-    router.get("/", function(req, res) {
-        res.render("employee/login/employeeLogin.ejs");
-    });
+    // "employeeLogin.ejs" page
+    router.get("/", (req, res) => res.render("employee/login/employeeLogin.ejs"));
 
+    // Check's if the login info is correct and logs them in
     router.post('/', passport.authenticate('local-employee-login', {
             successRedirect: '/home',
             failureRedirect: '/stafflogin',

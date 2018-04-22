@@ -18,6 +18,8 @@ var pool = mysql.createPool(config.db);
 
 require('require-sql');
 
+exports.pool = pool;
+
 //============================= Passport =============================
 
 
@@ -29,15 +31,13 @@ require('./config/passport')(passport, pool);
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(__dirname + "/public"));
-app.use(flash());
-
-app.use(cookieParser()); // read cookies (needed for auth)
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
 app.use(bodyParser.json());
 
+app.use(express.static(__dirname + "/public"));
+
+app.use(flash());
+
+app.use(cookieParser());
 app.use(session({
     secret: 'veryinteresting',
     resave: true,
@@ -46,8 +46,6 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use(flash());
 
 app.use(function(req, res, next) {
     res.locals.error = req.flash("error");
@@ -58,7 +56,12 @@ app.use(function(req, res, next) {
 
 //============================= Routes =============================
 
-//Passport
+// Index
+
+var indexRoutes = require("./routes/indexRoutes")();
+app.use("/", indexRoutes);
+
+// Authentication
 
 var studentLoginRoutes = require("./routes/passport/student/studentLoginRoutes")(passport);
 app.use("/login", studentLoginRoutes);
@@ -106,24 +109,19 @@ app.use("/addstudenttoclass", addStudentToClassRoutes);
 var removeStudentFromClassRoutes = require("./routes/staff/admin/removeStudentFromClassRoutes")(pool);
 app.use("/removestudentfromclass", removeStudentFromClassRoutes);
 
-var createassignmentRoutes = require("./routes/staff/teacher/createassignmentRoutes")(pool);
-app.use("/createassignment", createassignmentRoutes);
+var createAssignmentRoutes = require("./routes/staff/teacher/createAssignmentRoutes")(pool);
+app.use("/createassignment", createAssignmentRoutes);
 
 var deleteAssignmentRoutes = require("./routes/staff/teacher/deleteAssignmentRoutes")(pool);
 app.use("/deleteassignment", deleteAssignmentRoutes);
 
-var assignmentViewRoutes = require("./routes/staff/teacher/assignmentViewRoutes")(pool);
-app.use("/viewassignment", assignmentViewRoutes);
+var viewAssignmentRoutes = require("./routes/staff/teacher/viewAssignmentRoutes")(pool);
+app.use("/viewassignment", viewAssignmentRoutes);
 
 //Misc
 
-var indexRoutes = require("./routes/misc/indexRoutes")();
-app.use("/", indexRoutes);
-
 var miscRoutes = require("./routes/misc/miscRoutes")();
 app.use("*", miscRoutes);
-
-exports.pool = pool;
 
 //============================= Starting Server =============================
 

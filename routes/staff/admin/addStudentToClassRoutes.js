@@ -5,25 +5,26 @@ var flashUtils = require('../../../utils/flashUtils');
 
 var redirectLocation = ""; // Get's set in post
 
-module.exports = function(pool) {
+// URL: "/addstudenttoclass"
+module.exports = function (pool) {
 
-    router.get("/:id", middleMan.checkIfUserOwnsClass, function(req, res) {
+    // "addStudentToClass.ejs" page
+    router.get("/:id", middleMan.checkIfUserOwnsClass, (req, res) =>
         res.render("employee/teacher/admin/addStudentToClass.ejs", {
             classId: parseInt(req.params.id),
             isAdmin: true
-        });
-        //FIX IS ADMIN
-    });
+        }));
 
-    router.post("/:id", middleMan.checkIfUserOwnsClass, function(req, res) {
+    // Add's student to a class on form post
+    router.post("/:id", middleMan.checkIfUserOwnsClass, function (req, res) {
         redirectLocation = "/class/" + req.params.id;
 
-        pool.getConnection(function(err, connection) {
+        pool.getConnection(function (err, connection) {
             if (flashUtils.isDatabaseError(req, res, redirectLocation, err))
                 return;
 
             var addStudentToClass = require('./queries/addStudentToClass.sql');
-            connection.query(addStudentToClass, [parseInt(req.body.studentNumber), parseInt(req.params.id)], function(err, rows) {
+            connection.query(addStudentToClass, [parseInt(req.body.studentNumber), parseInt(req.params.id)], function (err, rows) {
                 connection.release();
 
                 if (flashUtils.isDatabaseError(req, res, redirectLocation, err))

@@ -1,31 +1,22 @@
-// var classDay = require('../../utils/classDays');
+// A part of the "homeRoutes.js"
 
-module.exports = function(req, res, user, flashUtils, redirectLocation, pool) {
+// URL: "/home"
+module.exports = function (req, res, user, flashUtils, redirectLocation, pool) {
 
-    pool.getConnection(function(err, connection) {
+    pool.getConnection(function (err, connection) {
         if (flashUtils.isDatabaseError(req, res, redirectLocation, err))
             return;
 
         var selectStudentDueAssignments = require('./queries/selectStudentDueAssignments.sql');
 
-        connection.query(selectStudentDueAssignments, [parseInt(user.studentNumber)], function(err, homework) {
+        connection.query(selectStudentDueAssignments, [parseInt(user.studentNumber)], function (err, homework) {
 
             if (flashUtils.isDatabaseError(req, res, redirectLocation, err)) {
                 connection.release();
                 return;
-
             }
 
-            //have a ? for CURDATE - ?
-            // var selectAnnoucements = require('./queries/selectAnnoucements.sql');
-
-            // connection.query(selectAnnoucements, function(err, annoucements) {
-            // 	connection.release();
-
-            // 	if (flashUtils.isDatabaseError(req, res, redirectLocation, err))
-            // 		return;
-
-
+            // Not finished
             var blocks = ["A1", "B1", "C1", "D1"];
             var selectStudentClasses;
 
@@ -35,8 +26,7 @@ module.exports = function(req, res, user, flashUtils, redirectLocation, pool) {
                 selectStudentClasses = require('./queries/selectStudentClassesBlock2.sql');
 
 
-
-            connection.query(selectStudentClasses, [blocks[0], blocks[1], blocks[2], blocks[3], user.studentNumber], function(err, classes) {
+            connection.query(selectStudentClasses, [blocks[0], blocks[1], blocks[2], blocks[3], user.studentNumber], function (err, classes) {
                 connection.release();
 
                 if (flashUtils.isDatabaseError(req, res, redirectLocation, err))
@@ -51,9 +41,6 @@ module.exports = function(req, res, user, flashUtils, redirectLocation, pool) {
                     homework: homework
                 });
             });
-            // });
-
         });
-
     });
 };

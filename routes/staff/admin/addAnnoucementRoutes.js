@@ -5,12 +5,13 @@ var flashUtils = require('../../../utils/flashUtils');
 
 var redirectLocation = "/home";
 
+// URL: "/addannoucement"
 module.exports = function(pool) {
 
-    router.get("/", middleMan.checkIsAdmin, function(req, res) {
-        res.render("employee/admin/addAnnoucement.ejs");
-    });
+    // "addAnnoucement.ejs" page
+    router.get("/", middleMan.checkIsAdmin, (req, res) => res.render("employee/admin/addAnnoucement.ejs"));
 
+    // Add's annoucement on form post
     router.post("/", middleMan.checkIsAdmin, function(req, res) {
         pool.getConnection(function(err, connection) {
             if (flashUtils.isDatabaseError(req, res, redirectLocation, err))

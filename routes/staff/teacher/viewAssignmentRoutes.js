@@ -6,8 +6,10 @@ var flashUtils = require('../../../utils/flashUtils');
 
 var redirectLocation = "/class/%id%";
 
+// URL: "/assinment"
 module.exports = function(pool) {
 
+    // "viewAssignment.ejs" page
     router.get("/:assignmentId", middleMan.checkIfUserOwnsAssignment, function(req, res) {
         pool.getConnection(function(err, connection) {
             if (flashUtils.isDatabaseError(req, res, redirectLocation, err))
